@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
@@ -20,18 +22,24 @@ import javax.swing.JTextField;
  */
 public class FrameMultiplicacion extends javax.swing.JInternalFrame {
 
-    private List<JTextField> list;
+    private List<JTextField> listA;
+    private List<JTextField> listB;
 
-    public int columnas = 0;
-    public int filas = 0;
+    public int columnasA = 0;
+    public int filasA = 0;
+    public int columnasB = 0;
+    public int filasB = 0;
 
     public FrameMultiplicacion() {
 
         initComponents();
 
-        list = new ArrayList<>();
+        listA = new ArrayList<>();
+        listB = new ArrayList<>();
 
-        this.setMaximizable(true);
+        //this.setMaximizable(true);
+        
+        
 
     }
 
@@ -57,6 +65,8 @@ public class FrameMultiplicacion extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         PnlMatrizA = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        PnlMatrizResultante = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         pnlinfoB = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
@@ -70,7 +80,6 @@ public class FrameMultiplicacion extends javax.swing.JInternalFrame {
         PnlMatrizB = new javax.swing.JPanel();
 
         setClosable(true);
-        setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1122, 600));
         setMinimumSize(new java.awt.Dimension(1122, 600));
         setPreferredSize(new java.awt.Dimension(1122, 600));
@@ -163,21 +172,40 @@ public class FrameMultiplicacion extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(pnlinfoA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
+                .addComponent(jScrollPane1)
                 .addContainerGap())
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        javax.swing.GroupLayout PnlMatrizResultanteLayout = new javax.swing.GroupLayout(PnlMatrizResultante);
+        PnlMatrizResultante.setLayout(PnlMatrizResultanteLayout);
+        PnlMatrizResultanteLayout.setHorizontalGroup(
+            PnlMatrizResultanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 326, Short.MAX_VALUE)
+        );
+        PnlMatrizResultanteLayout.setVerticalGroup(
+            PnlMatrizResultanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 496, Short.MAX_VALUE)
+        );
+
+        jScrollPane3.setViewportView(PnlMatrizResultante);
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 348, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3)
+                .addContainerGap())
         );
 
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -223,7 +251,7 @@ public class FrameMultiplicacion extends javax.swing.JInternalFrame {
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(TxtColumnasB, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 15, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(BntCrearMatrizB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -327,65 +355,72 @@ public class FrameMultiplicacion extends javax.swing.JInternalFrame {
     private void BntCrearMatrizAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BntCrearMatrizAActionPerformed
 
         PnlMatrizA.removeAll();
-        list.clear();
-
-        int col = Integer.parseInt(TxtColumnasA.getText());
-        int fil = Integer.parseInt(TxtFilasA.getText());
-
-        columnas = col;
-        filas = fil;
-
-        PnlMatrizA.setLayout(new java.awt.GridLayout(filas, columnas + 1));
-      
+        listA.clear();
+        int col =0;
+        int fil =0;
         
-
-        for (int i = 0; i < col* fil; i++) {
-
-
-                creaciontextfield();
-
+        try {
             
-
+        col = Integer.parseInt(TxtColumnasA.getText());
+        fil = Integer.parseInt(TxtFilasA.getText());
+            
+        } catch (NumberFormatException error) {
+            
+            
+         
+            JOptionPane.showMessageDialog(null,"Favor de Ingresar Solo Numeros","Error",JOptionPane.ERROR_MESSAGE);
+            TxtFilasA.setText("");
+            TxtColumnasA.setText("");
+            
+            
         }
-
         
         
        
+        
+        
+
+        columnasA = col;
+        filasA = fil;
+
+        PnlMatrizA.setLayout(new java.awt.GridLayout(filasA, columnasA + 1));
+
+        for (int i = 0; i < col * fil; i++) {
+
+            creaciontextfield(listA,PnlMatrizA);
+
+        }
+
+
     }//GEN-LAST:event_BntCrearMatrizAActionPerformed
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        int matriz[][] = new int[filas][columnas];
-        
-        
-        
+        int matriz[][] = new int[filasA][columnasA];
+
         int xy = 0;
-            
-            for (int i = 0; i < filas; i++) {
-            for (int j = 0; j < columnas; j++) {
-                
-                
-                matriz[i][j] = Integer.parseInt(list.get(xy).getText());
-                xy = xy+1;
-            
-                 
-            
-            
-        }
-            
-        }
-            
-            //Borrar despues***********************************************
-       System.out.println("Matriz A");
-            for (int x = 0; x < matriz.length; x++) {
-                for (int y = 0; y < matriz.length ;y++) {
 
-                    System.out.print(" ");
-                    System.out.print(matriz[x][y]);
-                    System.out.print(" ");
+        for (int i = 0; i < filasA; i++) {
+            for (int j = 0; j < columnasA; j++) {
 
-                }
-                System.out.println();
+                matriz[i][j] = Integer.parseInt(listA.get(xy).getText());
+                xy = xy + 1;
+
             }
+
+        }
+
+        //Borrar despues***********************************************
+        System.out.println("Matriz A");
+        for (int x = 0; x < matriz.length; x++) {
+            for (int y = 0; y < matriz.length; y++) {
+
+                System.out.print(" ");
+                System.out.print(matriz[x][y]);
+                System.out.print(" ");
+
+            }
+            System.out.println();
+        }
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
@@ -393,26 +428,45 @@ public class FrameMultiplicacion extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jLabel5MouseClicked
 
     private void BntCrearMatrizBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BntCrearMatrizBActionPerformed
-        // TODO add your handling code here:
+
+        
+        PnlMatrizB.removeAll();
+        listB.clear();
+
+        int col = Integer.parseInt(TxtColumnasB.getText());
+        int fil = Integer.parseInt(TxtFilasB.getText());
+
+        columnasB = col;
+        filasB = fil;
+
+        PnlMatrizB.setLayout(new java.awt.GridLayout(filasB, columnasB + 1));
+
+        for (int i = 0; i < col * fil; i++) {
+
+            creaciontextfield(listB,PnlMatrizB);
+
+        }
+
     }//GEN-LAST:event_BntCrearMatrizBActionPerformed
 
-public void creaciontextfield(){
-        
+    public void creaciontextfield(List x, JPanel y) {
+
         JTextField txt = new JTextField();
         txt.setHorizontalAlignment(JTextField.CENTER);
-        
+
         txt.setVisible(true);
-        txt.setSize(14,25);
-        PnlMatrizA.add(txt);
-        
-        PnlMatrizA.validate();
-        list.add(txt);
-}
+        txt.setSize(14, 25);
+        y.add(txt);
+
+        y.validate();
+        x.add(txt);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BntCrearMatrizA;
     private javax.swing.JButton BntCrearMatrizB;
     private javax.swing.JPanel PnlMatrizA;
     private javax.swing.JPanel PnlMatrizB;
+    private javax.swing.JPanel PnlMatrizResultante;
     private javax.swing.JTextField TxtColumnasA;
     private javax.swing.JTextField TxtColumnasB;
     private javax.swing.JTextField TxtFilasA;
@@ -431,8 +485,8 @@ public void creaciontextfield(){
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JPanel pnlinfoA;
     private javax.swing.JPanel pnlinfoB;
     // End of variables declaration//GEN-END:variables
 }
-
