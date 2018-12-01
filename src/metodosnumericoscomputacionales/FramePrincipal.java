@@ -36,7 +36,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         bntSalir = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         mnuMultiplicacionMatrices = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        mnuEliminacionGauss = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -75,8 +75,13 @@ public class FramePrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(mnuMultiplicacionMatrices);
 
-        jMenuItem2.setText("Eliminacion Gaussiana");
-        jMenu2.add(jMenuItem2);
+        mnuEliminacionGauss.setText("Eliminacion Gaussiana");
+        mnuEliminacionGauss.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuEliminacionGaussActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mnuEliminacionGauss);
 
         jMenuBar1.add(jMenu2);
 
@@ -109,12 +114,28 @@ public class FramePrincipal extends javax.swing.JFrame {
 
         Dimension FrameSize = framemul.getSize();
         framemul.setLocation((tamanoframe.width - FrameSize.width) / 2, (tamanoframe.height - FrameSize.height) / 2);
-        //this.show();
+        
 
         framemul.setVisible(true);
 
 
     }//GEN-LAST:event_mnuMultiplicacionMatricesActionPerformed
+
+    private void mnuEliminacionGaussActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuEliminacionGaussActionPerformed
+        
+        FrameEliminacionGauss eliminacion = new FrameEliminacionGauss();
+        DesktopPane.add(eliminacion);
+        
+        tamanoframe = DesktopPane.getSize();
+
+        Dimension FrameSize = eliminacion.getSize();
+        eliminacion.setLocation((tamanoframe.width - FrameSize.width) / 2, (tamanoframe.height - FrameSize.height) / 2);
+        
+
+        eliminacion.setVisible(true);
+
+        
+    }//GEN-LAST:event_mnuEliminacionGaussActionPerformed
 
     /**
      * @param args the command line arguments
@@ -159,7 +180,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem mnuEliminacionGauss;
     private javax.swing.JMenuItem mnuMultiplicacionMatrices;
     // End of variables declaration//GEN-END:variables
 }

@@ -29,6 +29,7 @@ public class FrameMultiplicacion extends javax.swing.JInternalFrame {
 
         listA = new ArrayList<>();
         listB = new ArrayList<>();
+        this.setTitle("Multiplicacion de Matrices");
 
        
     }
