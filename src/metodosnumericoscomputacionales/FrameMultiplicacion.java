@@ -392,6 +392,7 @@ public class FrameMultiplicacion extends javax.swing.JInternalFrame {
             TxtFilasB.setText("");
             TxtColumnasB.setText("");
             
+        
         } else {
 
             PnlMatrizB.removeAll();
@@ -424,6 +425,11 @@ public class FrameMultiplicacion extends javax.swing.JInternalFrame {
         if (columnasA != filasB) {
 
             JOptionPane.showMessageDialog(null, "LAS MATRICES NO SE PUEDEN MULTIPLICAR", "Error", JOptionPane.ERROR_MESSAGE);
+                PnlMatrizA.removeAll();
+            PnlMatrizB.removeAll();
+            PnlMatrizA.repaint();
+            PnlMatrizB.repaint();
+            
 
         } else {
             try {
@@ -492,6 +498,7 @@ public class FrameMultiplicacion extends javax.swing.JInternalFrame {
                 }
             }
         }
+        
         List<JTextField> listaR = new ArrayList<>();
 
         crearMatriz(pnlMatrizResultante, listaR, filasA, columnasB);

@@ -22,16 +22,26 @@ public class FrameEliminacionGauss extends javax.swing.JInternalFrame {
     List<JTextField> listamatrizA;
     List<JTextField> listavectorB;
     List<JLabel> listaetiquetas;
-    
-    
+
+    List<JTextField> listaMatrizResultante;
+    List<JTextField> listavectorResultante;
+    List<JLabel> listaigualResultado;
+
+    int tamano = 0;
+
     public FrameEliminacionGauss() {
         initComponents();
-        
+
         listamatrizA = new ArrayList<>();
         listavectorB = new ArrayList<>();
         listaetiquetas = new ArrayList<>();
+
+        listaMatrizResultante = new ArrayList();
+        listavectorResultante = new ArrayList();
+        listaigualResultado = new ArrayList();
+        ;
         this.setTitle("Eliminacion de Gauss");
-        
+
     }
 
     /**
@@ -55,8 +65,18 @@ public class FrameEliminacionGauss extends javax.swing.JInternalFrame {
         txtnovariables = new javax.swing.JTextField();
         btnCrearMatriz = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
+        btnSolucion = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         pnlIgual = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        pnlMatrizResultante = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        pnlIgualR = new javax.swing.JPanel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        pnlVectorBResultante = new javax.swing.JPanel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        pnlSolucion = new javax.swing.JPanel();
 
         setClosable(true);
         setMaximumSize(new java.awt.Dimension(1200, 600));
@@ -67,10 +87,10 @@ public class FrameEliminacionGauss extends javax.swing.JInternalFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        pnlMatrizA.setLayout(new java.awt.GridLayout());
+        pnlMatrizA.setLayout(new java.awt.GridLayout(1, 0));
         jScrollPane1.setViewportView(pnlMatrizA);
 
-        pnlB.setLayout(new java.awt.GridLayout());
+        pnlB.setLayout(new java.awt.GridLayout(1, 0));
         jScrollPane2.setViewportView(pnlB);
 
         pnlInfo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -96,6 +116,13 @@ public class FrameEliminacionGauss extends javax.swing.JInternalFrame {
             }
         });
 
+        btnSolucion.setText("Solucion");
+        btnSolucion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSolucionActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlInfoLayout = new javax.swing.GroupLayout(pnlInfo);
         pnlInfo.setLayout(pnlInfoLayout);
         pnlInfoLayout.setHorizontalGroup(
@@ -105,15 +132,17 @@ public class FrameEliminacionGauss extends javax.swing.JInternalFrame {
                 .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbltitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pnlInfoLayout.createSequentialGroup()
-                        .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(btnCrearMatriz, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblingrese, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
                         .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtnovariables)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlInfoLayout.createSequentialGroup()
-                                .addGap(0, 198, Short.MAX_VALUE)
-                                .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(pnlInfoLayout.createSequentialGroup()
+                                .addComponent(lblingrese, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtnovariables))
+                            .addGroup(pnlInfoLayout.createSequentialGroup()
+                                .addComponent(btnCrearMatriz, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnSolucion, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)))
                         .addContainerGap())))
         );
         pnlInfoLayout.setVerticalGroup(
@@ -128,14 +157,15 @@ public class FrameEliminacionGauss extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCrearMatriz)
-                    .addComponent(btnLimpiar))
+                    .addComponent(btnLimpiar)
+                    .addComponent(btnSolucion))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jScrollPane3.setBorder(null);
 
         pnlIgual.setBorder(javax.swing.BorderFactory.createCompoundBorder());
-        pnlIgual.setLayout(new java.awt.GridLayout());
+        pnlIgual.setLayout(new java.awt.GridLayout(1, 0));
         jScrollPane3.setViewportView(pnlIgual);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -161,9 +191,52 @@ public class FrameEliminacionGauss extends javax.swing.JInternalFrame {
                 .addComponent(pnlInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
                     .addComponent(jScrollPane2)
                     .addComponent(jScrollPane3))
+                .addContainerGap())
+        );
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        pnlMatrizResultante.setLayout(new java.awt.GridLayout());
+        jScrollPane4.setViewportView(pnlMatrizResultante);
+
+        pnlIgualR.setLayout(new java.awt.GridLayout());
+        jScrollPane5.setViewportView(pnlIgualR);
+
+        pnlVectorBResultante.setLayout(new java.awt.GridLayout());
+        jScrollPane6.setViewportView(pnlVectorBResultante);
+
+        pnlSolucion.setLayout(new java.awt.GridLayout());
+        jScrollPane7.setViewportView(pnlSolucion);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane7)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane5)
+                    .addComponent(jScrollPane6)
+                    .addComponent(jScrollPane4))
+                .addGap(11, 11, 11)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -174,13 +247,17 @@ public class FrameEliminacionGauss extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(571, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -206,75 +283,239 @@ public class FrameEliminacionGauss extends javax.swing.JInternalFrame {
 
     private void btnCrearMatrizActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearMatrizActionPerformed
 
-        
         pnlMatrizA.removeAll();
         pnlB.removeAll();
         pnlIgual.removeAll();
-      
+
         listamatrizA.clear();
         listavectorB.clear();
         listaetiquetas.clear();
-        
-       
-        try{
-       
-           int tamano = Integer.parseInt(txtnovariables.getText());
-           
-           pnlMatrizA.setLayout(new java.awt.GridLayout(tamano,tamano));
-           pnlB.setLayout(new java.awt.GridLayout(tamano, 0));
-           pnlIgual.setLayout(new java.awt.GridLayout(tamano, 0));
-            for (int i = 0; i < tamano * tamano ; i++) {
-                
+
+        try {
+
+            tamano = Integer.parseInt(txtnovariables.getText());
+
+            pnlMatrizA.setLayout(new java.awt.GridLayout(tamano, tamano));
+            pnlB.setLayout(new java.awt.GridLayout(tamano, 0));
+            pnlIgual.setLayout(new java.awt.GridLayout(tamano, 0));
+            for (int i = 0; i < tamano * tamano; i++) {
+
                 creaciontextfield(listamatrizA, pnlMatrizA);
-            
-                
+
             }
             for (int i = 0; i < tamano; i++) {
-                  creaciontextfield(listavectorB, pnlB);
-                  etiquetas(pnlIgual, listaetiquetas);
-                 
- 
+                creaciontextfield(listavectorB, pnlB);
+                etiquetas(pnlIgual, listaetiquetas);
+
             }
-          
-           
-          
-            
-           
-        
-        
-        }catch(Exception e){
-        
-            JOptionPane.showMessageDialog(null,"Ingrese Solo Numeros","Error",JOptionPane.ERROR_MESSAGE);
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, "Ingrese Solo Numeros", "Error", JOptionPane.ERROR_MESSAGE);
             txtnovariables.setText("");
-            
+
         }
-        
-        
+
+
     }//GEN-LAST:event_btnCrearMatrizActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+
+        pnlMatrizA.removeAll();
+        pnlMatrizA.repaint();
+
+        pnlB.removeAll();
+        pnlB.repaint();
+
+        pnlIgual.removeAll();
+        pnlIgual.repaint();
         
-       pnlMatrizA.removeAll();
-       pnlMatrizA.repaint();
-       
-       pnlB.removeAll();
-       pnlB.repaint();
-       
-       pnlIgual.removeAll();
-       pnlIgual.repaint();
-       
-       txtnovariables.setText("");
+        pnlMatrizResultante.removeAll();
+        pnlMatrizResultante.repaint();
         
+        pnlIgualR.removeAll();
+        pnlIgual.repaint();
         
-        
-       
-        
-       
-        
-       
+        pnlVectorBResultante.removeAll();
+        pnlVectorBResultante.repaint();
+
+        txtnovariables.setText("");
+
+
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
-public void creaciontextfield(List lista, JPanel panel) {
+    private void btnSolucionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolucionActionPerformed
+
+try{
+        double[][] MatrizA = null;
+        double[] vector = null;
+
+        for (int i = 0; i < listamatrizA.size(); i++) {
+
+            if (listamatrizA.get(i).getText().equals("")) {
+
+                JOptionPane.showMessageDialog(null, "Favor De llenar todos los campos");
+                break;
+
+            } else {
+
+                listamatrizA.get(i).setEditable(false);
+                
+
+            }
+
+        }
+
+        MatrizA = new double[tamano][tamano];
+
+        int mA = 0;
+
+        for (int i = 0; i < tamano; i++) {
+            for (int j = 0; j < tamano; j++) {
+
+                MatrizA[i][j] = Double.parseDouble(listamatrizA.get(mA).getText());
+                mA = mA + 1;
+
+            }
+
+        }
+
+        vector = new double[tamano];
+
+        int v = 0;
+
+        for (int i = 0; i < tamano; i++) {
+
+            vector[i] = Double.parseDouble(listavectorB.get(v).getText());
+            v = v + 1;
+
+        }
+
+        pnlMatrizResultante.removeAll();
+        pnlVectorBResultante.removeAll();
+        pnlIgualR.removeAll();
+
+        listaMatrizResultante.clear();
+        listavectorResultante.clear();
+        listaigualResultado.clear();
+
+        tamano = Integer.parseInt(txtnovariables.getText());
+
+        pnlMatrizResultante.setLayout(new java.awt.GridLayout(tamano, tamano));
+        pnlVectorBResultante.setLayout(new java.awt.GridLayout(tamano, 0));
+        pnlIgualR.setLayout(new java.awt.GridLayout(tamano, 0));
+
+        for (int i = 0; i < tamano * tamano; i++) {
+
+            creaciontextfield(listaMatrizResultante, pnlMatrizResultante);
+
+        }
+        for (int i = 0; i < tamano; i++) {
+            creaciontextfield(listavectorResultante, pnlVectorBResultante);
+            etiquetas(pnlIgualR, listaigualResultado);
+
+        }
+
+        ////////////////////////////////////////solucion(MatrizA, vector);
+        int N;
+        N = vector.length;
+        for (int k = 0; k < N; k++) {
+            /**
+             * find pivot row *
+             */
+            int max = k;
+            for (int i = k + 1; i < N; i++) {
+                if (Math.abs(MatrizA[i][k]) > Math.abs(MatrizA[max][k])) {
+                    max = i;
+                }
+            }
+
+            /**
+             * swap row in MatrizA matrix *
+             */
+            double[] temp = MatrizA[k];
+            MatrizA[k] = MatrizA[max];
+            MatrizA[max] = temp;
+
+            /**
+             * swap corresponding values in constants matrix *
+             */
+            double t = vector[k];
+            vector[k] = vector[max];
+            vector[max] = t;
+
+            /**
+             * pivot within MatrizA and vector *
+             */
+            for (int i = k + 1; i < N; i++) {
+                double factor = MatrizA[i][k] / MatrizA[k][k];
+                vector[i] -= factor * vector[k];
+                for (int j = k; j < N; j++) {
+                    MatrizA[i][j] -= factor * MatrizA[k][j];
+                }
+            }
+        }
+
+        /**
+         * Print row echelon form *
+         */
+        //** printRowEchelonForm(MatrizA, vector);
+        /**
+         * back substitution *
+         */
+        double[] solution = new double[N];
+        for (int i = N - 1; i >= 0; i--) {
+            double sum = 0.0;
+            for (int j = i + 1; j < N; j++) {
+                sum += MatrizA[i][j] * solution[j];
+            }
+            solution[i] = (vector[i] - sum) / MatrizA[i][i];
+        }
+
+        int indice = 0;
+
+        for (int i = 0; i < MatrizA.length; i++) {
+            for (int j = 0; j < MatrizA[i].length; j++) {
+
+                listaMatrizResultante.get(indice).setText("" + MatrizA[i][j]);
+                indice = indice + 1;
+
+            }
+
+        }
+
+        }catch(Exception e){
+         JOptionPane.showMessageDialog(null,"Favor De Verificar la informacion en la matriz","error",JOptionPane.ERROR_MESSAGE);
+         for (int i = 0; i < listamatrizA.size(); i++) {
+
+                    listamatrizA.get(i).setText("");
+                    listamatrizA.get(i).setEditable(true);
+
+                }
+         
+         for (int i = 0; i < listavectorB.size(); i++) {
+             
+             listavectorB.get(i).setText("");
+             
+             listavectorB.get(i).setEditable(true);
+             
+        
+    }
+         
+         for (int i = 0; i < listaetiquetas.size(); i++) {
+             
+             listaetiquetas.get(i).setText("");
+        
+    }
+         
+         
+        
+        }
+
+    }//GEN-LAST:event_btnSolucionActionPerformed
+
+////////////////////Metodos para poder crear los textFields necesarios segun el usuario los necesite/////////
+    public void creaciontextfield(List lista, JPanel panel) {
         Font fuente = new Font("Tahoma", 24, 30);
 
         JTextField txt = new JTextField();
@@ -289,9 +530,9 @@ public void creaciontextfield(List lista, JPanel panel) {
         lista.add(txt);
     }
 
-public void etiquetas(JPanel panel, List lista){
-    
-     Font fuente = new Font("Tahoma", 24, 30);
+    public void etiquetas(JPanel panel, List lista) {
+
+        Font fuente = new Font("Tahoma", 24, 30);
 
         JLabel txt = new JLabel();
         txt.setHorizontalAlignment(JTextField.CENTER);
@@ -304,23 +545,119 @@ public void etiquetas(JPanel panel, List lista){
 
         panel.validate();
         lista.add(txt);
-    
-}
+
+    }
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//metodos para la llenar la matriz identidad y el vector resultante
+
+    public void CrearMatriz(double[][] matrizA, int tamano, List<JTextField> listA) {
+
+        //matrizA = new double[tamano][tamano];
+        int mA = 0;
+
+        for (int i = 0; i < tamano; i++) {
+            for (int j = 0; j < tamano; j++) {
+
+                matrizA[i][j] = Double.parseDouble(listA.get(mA).getText());
+                mA = mA + 1;
+
+            }
+
+        }
+
+    }
+
+    public void CrearVector(double[] vector, int tamano, List<JTextField> lista) {
+
+        vector = new double[tamano];
+        int v = 0;
+
+        for (int i = 0; i < tamano; i++) {
+
+            vector[i] = Double.parseDouble(lista.get(v).getText());
+            v = v + 1;
+
+        }
+
+    }
+///////////////////////////////////////////////////////////////////////////
+
+    public void solucion(double[][] MatrizA, double[] vector) {
+
+        int N = vector.length;
+        for (int k = 0; k < N; k++) {
+            /**
+             * find pivot row *
+             */
+            int max = k;
+            for (int i = k + 1; i < N; i++) {
+                if (Math.abs(MatrizA[i][k]) > Math.abs(MatrizA[max][k])) {
+                    max = i;
+                }
+            }
+
+            /**
+             * swap row in MatrizA matrix *
+             */
+            double[] temp = MatrizA[k];
+            MatrizA[k] = MatrizA[max];
+            MatrizA[max] = temp;
+
+            /**
+             * swap corresponding values in constants matrix *
+             */
+            double t = vector[k];
+            vector[k] = vector[max];
+            vector[max] = t;
+
+            /**
+             * pivot within MatrizA and vector *
+             */
+            for (int i = k + 1; i < N; i++) {
+                double factor = MatrizA[i][k] / MatrizA[k][k];
+                vector[i] -= factor * vector[k];
+                for (int j = k; j < N; j++) {
+                    MatrizA[i][j] -= factor * MatrizA[k][j];
+                }
+            }
+        }
+
+       
+        double[] solution = new double[N];
+        for (int i = N - 1; i >= 0; i--) {
+            double sum = 0.0;
+            for (int j = i + 1; j < N; j++) {
+                sum += MatrizA[i][j] * solution[j];
+            }
+            solution[i] = (vector[i] - sum) / MatrizA[i][i];
+        }
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCrearMatriz;
     private javax.swing.JButton btnLimpiar;
+    private javax.swing.JButton btnSolucion;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JLabel lblingrese;
     private javax.swing.JLabel lbltitulo;
     private javax.swing.JPanel pnlB;
     private javax.swing.JPanel pnlIgual;
+    private javax.swing.JPanel pnlIgualR;
     private javax.swing.JPanel pnlInfo;
     private javax.swing.JPanel pnlMatrizA;
+    private javax.swing.JPanel pnlMatrizResultante;
+    private javax.swing.JPanel pnlSolucion;
+    private javax.swing.JPanel pnlVectorBResultante;
     private javax.swing.JTextField txtnovariables;
     // End of variables declaration//GEN-END:variables
 }
