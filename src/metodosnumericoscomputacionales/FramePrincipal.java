@@ -37,6 +37,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         mnuMultiplicacionMatrices = new javax.swing.JMenuItem();
         mnuEliminacionGauss = new javax.swing.JMenuItem();
+        mnuigaussseidel = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -82,6 +83,14 @@ public class FramePrincipal extends javax.swing.JFrame {
             }
         });
         jMenu2.add(mnuEliminacionGauss);
+
+        mnuigaussseidel.setText("Gauss-Seidel");
+        mnuigaussseidel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuigaussseidelActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mnuigaussseidel);
 
         jMenuBar1.add(jMenu2);
 
@@ -137,6 +146,21 @@ public class FramePrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_mnuEliminacionGaussActionPerformed
 
+    private void mnuigaussseidelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuigaussseidelActionPerformed
+     
+        FrameSeidel seidel = new FrameSeidel();
+        DesktopPane.add(seidel);
+        
+        tamanoframe = DesktopPane.getSize();
+        
+        Dimension FrameSize = seidel.getSize();
+        seidel.setLocation((tamanoframe.width - FrameSize.width) / 2, (tamanoframe.height - FrameSize.height) / 2);
+        
+        seidel.setVisible(true);
+
+        
+    }//GEN-LAST:event_mnuigaussseidelActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -182,5 +206,6 @@ public class FramePrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem mnuEliminacionGauss;
     private javax.swing.JMenuItem mnuMultiplicacionMatrices;
+    private javax.swing.JMenuItem mnuigaussseidel;
     // End of variables declaration//GEN-END:variables
 }
