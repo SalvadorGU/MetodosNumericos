@@ -419,8 +419,8 @@ public class FrameMultiplicacion extends javax.swing.JInternalFrame {
 
     private void btnmultiplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmultiplicarActionPerformed
 
-        int matrizA[][] = null;
-        int matrizB[][] = null;
+        double matrizA[][] = null;
+        double matrizB[][] = null;
 
         if (columnasA != filasB) {
 
@@ -434,14 +434,14 @@ public class FrameMultiplicacion extends javax.swing.JInternalFrame {
         } else {
             try {
 
-                matrizA = new int[filasA][columnasA];
+                matrizA = new double[filasA][columnasA];
 
                 int mA = 0;
 
                 for (int i = 0; i < filasA; i++) {
                     for (int j = 0; j < columnasA; j++) {
 
-                        matrizA[i][j] = Integer.parseInt(listA.get(mA).getText());
+                        matrizA[i][j] = Double.parseDouble(listA.get(mA).getText());
                         mA = mA + 1;
 
                     }
@@ -451,6 +451,7 @@ public class FrameMultiplicacion extends javax.swing.JInternalFrame {
             } catch (Exception e) {
 
                 JOptionPane.showMessageDialog(null, "Favor de Verificar Informacion en la matriz A", "Error", JOptionPane.ERROR_MESSAGE);
+                System.out.println(e.getMessage());
                 for (int i = 0; i < listA.size(); i++) {
 
                     listA.get(i).setText("");
@@ -461,14 +462,14 @@ public class FrameMultiplicacion extends javax.swing.JInternalFrame {
 
             try {
 
-                matrizB = new int[filasB][columnasB];
+                matrizB = new double[filasB][columnasB];
 
                 int mB = 0;
 
                 for (int i = 0; i < filasB; i++) {
                     for (int j = 0; j < columnasB; j++) {
 
-                        matrizB[i][j] = Integer.parseInt(listB.get(mB).getText());
+                        matrizB[i][j] = Double.parseDouble(listB.get(mB).getText());
                         mB = mB + 1;
 
                     }
@@ -489,7 +490,7 @@ public class FrameMultiplicacion extends javax.swing.JInternalFrame {
         }
 
        
-        int MatrizResultante[][] = new int[filasA][columnasB];
+        double MatrizResultante[][] = new double[filasA][columnasB];
         int Columna1 = matrizA[0].length;
         for (int x = 0; x < MatrizResultante.length; x++) {
             for (int y = 0; y < MatrizResultante[x].length; y++) {
@@ -509,7 +510,7 @@ public class FrameMultiplicacion extends javax.swing.JInternalFrame {
             for (int j = 0; j < MatrizResultante[i].length; j++) {
 
                 listaR.get(indice).setText("" + MatrizResultante[i][j]);
-                System.out.println(listaR.get(i).getText());
+               
                 indice = indice + 1;
 
             }

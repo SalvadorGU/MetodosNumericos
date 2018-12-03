@@ -30,14 +30,28 @@ public class FramePrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDesktopPane1 = new javax.swing.JDesktopPane();
         DesktopPane = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         bntSalir = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        mnuGaussJordan = new javax.swing.JMenu();
         mnuMultiplicacionMatrices = new javax.swing.JMenuItem();
         mnuEliminacionGauss = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        mnuinversion = new javax.swing.JMenuItem();
         mnuigaussseidel = new javax.swing.JMenuItem();
+
+        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
+        jDesktopPane1.setLayout(jDesktopPane1Layout);
+        jDesktopPane1Layout.setHorizontalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jDesktopPane1Layout.setVerticalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -66,7 +80,7 @@ public class FramePrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Metodos");
+        mnuGaussJordan.setText("Metodos");
 
         mnuMultiplicacionMatrices.setText("Multiplicacion de Matrices");
         mnuMultiplicacionMatrices.addActionListener(new java.awt.event.ActionListener() {
@@ -74,7 +88,7 @@ public class FramePrincipal extends javax.swing.JFrame {
                 mnuMultiplicacionMatricesActionPerformed(evt);
             }
         });
-        jMenu2.add(mnuMultiplicacionMatrices);
+        mnuGaussJordan.add(mnuMultiplicacionMatrices);
 
         mnuEliminacionGauss.setText("Eliminacion Gaussiana");
         mnuEliminacionGauss.addActionListener(new java.awt.event.ActionListener() {
@@ -82,7 +96,23 @@ public class FramePrincipal extends javax.swing.JFrame {
                 mnuEliminacionGaussActionPerformed(evt);
             }
         });
-        jMenu2.add(mnuEliminacionGauss);
+        mnuGaussJordan.add(mnuEliminacionGauss);
+
+        jMenuItem1.setText("Gauss-Jordan");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        mnuGaussJordan.add(jMenuItem1);
+
+        mnuinversion.setText("Inversion de Matrices");
+        mnuinversion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuinversionActionPerformed(evt);
+            }
+        });
+        mnuGaussJordan.add(mnuinversion);
 
         mnuigaussseidel.setText("Gauss-Seidel");
         mnuigaussseidel.addActionListener(new java.awt.event.ActionListener() {
@@ -90,9 +120,9 @@ public class FramePrincipal extends javax.swing.JFrame {
                 mnuigaussseidelActionPerformed(evt);
             }
         });
-        jMenu2.add(mnuigaussseidel);
+        mnuGaussJordan.add(mnuigaussseidel);
 
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(mnuGaussJordan);
 
         setJMenuBar(jMenuBar1);
 
@@ -135,6 +165,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         FrameEliminacionGauss eliminacion = new FrameEliminacionGauss();
         DesktopPane.add(eliminacion);
         
+       
         tamanoframe = DesktopPane.getSize();
 
         Dimension FrameSize = eliminacion.getSize();
@@ -160,6 +191,36 @@ public class FramePrincipal extends javax.swing.JFrame {
 
         
     }//GEN-LAST:event_mnuigaussseidelActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+      
+        FrameGausJordan jordan = new FrameGausJordan();
+        DesktopPane.add(jordan);
+        
+        tamanoframe = DesktopPane.getSize();
+        
+        Dimension FrameSize = jordan.getSize();
+        jordan.setLocation((tamanoframe.width - FrameSize.width) / 2, (tamanoframe.height - FrameSize.height) / 2);
+        
+        jordan.setVisible(true);
+        
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void mnuinversionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuinversionActionPerformed
+
+        FrameMatrizInversa inversa = new FrameMatrizInversa();
+        DesktopPane.add(inversa);
+        
+        tamanoframe = DesktopPane.getSize();
+        
+        Dimension FrameSize = inversa.getSize();
+        inversa.setLocation((tamanoframe.width - FrameSize.width) / 2, (tamanoframe.height - FrameSize.height) / 2);
+        
+        inversa.setVisible(true);
+        
+        
+
+    }//GEN-LAST:event_mnuinversionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -201,11 +262,14 @@ public class FramePrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JDesktopPane DesktopPane;
     private javax.swing.JMenuItem bntSalir;
+    private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem mnuEliminacionGauss;
+    private javax.swing.JMenu mnuGaussJordan;
     private javax.swing.JMenuItem mnuMultiplicacionMatrices;
     private javax.swing.JMenuItem mnuigaussseidel;
+    private javax.swing.JMenuItem mnuinversion;
     // End of variables declaration//GEN-END:variables
 }
