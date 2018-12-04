@@ -333,6 +333,23 @@ public class FrameGausJordan extends javax.swing.JInternalFrame {
             }
 
             txtnovariables.setText("");
+            
+            int index = 0;
+            for (int i = 0; i < 10; i++) {
+                
+                
+                if (listamatrizA.get(index).getText().equalsIgnoreCase("0")) {
+                    
+                   
+                    JOptionPane.showMessageDialog(null,"Hay una serpeinte en mi bota");
+                    btnLimpiarActionPerformed(evt);
+                  
+                } else{
+                    
+                    index = index + tamano;
+                    
+                }
+            }
 
         } catch (Exception e) {
 
@@ -379,191 +396,163 @@ public class FrameGausJordan extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnSolucionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolucionActionPerformed
-
         int size = tamano + 1;
-
+       
         try {
 
-            float[][] MatrizA = new float[tamano][size];
-
-            int mA = 0;
-
-            for (int i = 0; i < tamano; i++) {
-                for (int j = 0; j < size; j++) {
-
-                    MatrizA[i][j] = Float.parseFloat(listamatrizA.get(mA).getText());
-                    mA = mA + 1;
-
-                }
-
-            }
-
-            int var = tamano, piv = 0;
-            
-            for (int a = 0; a < var; a++) {
-            pivote(MatrizA, piv, var);
-
-            System.out.println("\tRenglon " + (a + 1) + " entre el pivote");
-            mostrarMatriz(MatrizA, var);
-
-            System.out.println("");
-
-            System.out.println("\tHaciendo ceros");
-            hacerCeros(MatrizA, piv, var);
-
-           mostrarMatriz(MatrizA, var);
-            System.out.println("");
-            piv++;
-        }
-        for (int x = 0; x < var; x++) {
-            System.out.println("La variable X" + (x + 1) + " es: " + MatrizA[x][var]);
-        }
-
-            System.out.println("/////");
-            
-              for (int i = 0; i < tamano; i++) {
-                for (int j = 0; j < size; j++) {
-
-                    System.out.println(MatrizA[i][j]);
-                    
-
-                }
-
-            }
-            
            
-            
-/*
-            pnlMatrizResultante.removeAll();
-            pnlVectorBResultante.removeAll();
-            pnlIgualR.removeAll();
 
-            listaMatrizResultante.clear();
-            listavectorResultante.clear();
-            listaigualResultado.clear();
 
-            pnlMatrizResultante.setLayout(new java.awt.GridLayout(tamano, tamano));
-            pnlVectorBResultante.setLayout(new java.awt.GridLayout(tamano, 0));
-            pnlIgualR.setLayout(new java.awt.GridLayout(tamano, 0));
+                    float[][] MatrizA = new float[tamano][size];
 
-            int flag = tamano;
+                    int mA = 0;
 
-            for (int i = 0; i < (tamano + 1) * tamano; i++) {
+                    for (int i = 0; i < tamano; i++) {
+                        for (int j = 0; j < size; j++) {
 
-                if (i == flag) {
+                            MatrizA[i][j] = Float.parseFloat(listamatrizA.get(mA).getText());
+                            mA = mA + 1;
 
-                    creaciontextfield(listavectorResultante, pnlVectorBResultante);
-                    etiquetas(pnlIgualR, listaigualResultado);
-                    flag = flag + (tamano + 1);
+                        }
 
-                } else {
-
-                    creaciontextfield(listaMatrizResultante, pnlMatrizResultante);
-
-                }
-
-            }
-
-            int indice = 0;
-
-            for (int i = 0; i < MatrizA.length; i++) {
-                for (int j = 0; j < MatrizA[i].length; j++) {
-
-                    if (j == tamano) {
-
-                        listavectorResultante.get(indice).setText("" + MatrizA[i][j]);
-                        listavectorResultante.get(indice).setEditable(false);
-                        indice = indice + 1;
-
-                    } else {
-
-                        listaMatrizResultante.get(indice).setText("" + MatrizA[i][j]);
-                        listaMatrizResultante.get(indice).setEditable(false);
-                        indice = indice + 1;
                     }
-                }
 
-            }
+                    int var = tamano, piv = 0;
 
-            /*
-            
-            int indice2 = 0;
+                    for (int a = 0; a < var; a++) {
+                        pivote(MatrizA, piv, var);
 
-            for (int i = 0; i < vector.length; i++) {
+                        System.out.println("\tRenglon " + (a + 1) + " entre el pivote");
+                        mostrarMatriz(MatrizA, var);
 
-                listavectorResultante.get(indice2).setText("" + vector[i]);
-                listavectorResultante.get(indice2).setEditable(false);
-                indice2 = indice2 + 1;
+                        System.out.println("");
 
-            }
+                        System.out.println("\tHaciendo ceros");
+                        hacerCeros(MatrizA, piv, var);
 
-            double[] solution = new double[vector.length];
-            for (int i = vector.length - 1; i >= 0; i--) {
-                double sum = 0.0;
-                for (int j = i + 1; j < vector.length; j++) {
-                    sum += MatrizA[i][j] * solution[j];
-                }
-                solution[i] = (vector[i] - sum) / MatrizA[i][i];
-            }
-            
-            pnlSolucion.removeAll();
-            listasolucion.clear();
-            
-            pnlvaribles.removeAll();
-            List<JLabel> listavariables = new ArrayList<>();
-            listavariables.clear();
+                        mostrarMatriz(MatrizA, var);
+                        System.out.println("");
+                        piv++;
+                    }
 
-            pnlvaribles.setLayout(new java.awt.GridLayout(0,vector.length));
-            pnlSolucion.setLayout(new java.awt.GridLayout(0, vector.length));
+                    pnlMatrizResultante.removeAll();
+                    pnlVectorBResultante.removeAll();
+                    pnlIgualR.removeAll();
 
-            char[] abc = Abecedario();
-            
-            for (int i = 0; i < solution.length; i++) {
+                    listaMatrizResultante.clear();
+                    listavectorResultante.clear();
+                    listaigualResultado.clear();
 
-                etiquetassolucion(pnlSolucion, listasolucion);
-                etiquetas(pnlvaribles,listavariables);
+                    pnlMatrizResultante.setLayout(new java.awt.GridLayout(tamano, tamano));
+                    pnlVectorBResultante.setLayout(new java.awt.GridLayout(tamano, 0));
+                    pnlIgualR.setLayout(new java.awt.GridLayout(tamano, 0));
+
+                    int flag = tamano;
+
+                    for (int i = 0; i < (tamano + 1) * tamano; i++) {
+
+                        if (i == flag) {
+
+                            creaciontextfield(listavectorResultante, pnlVectorBResultante);
+                            etiquetas(pnlIgualR, listaigualResultado);
+                            flag = flag + (tamano + 1);
+
+                        } else {
+
+                            creaciontextfield(listaMatrizResultante, pnlMatrizResultante);
+
+                        }
+
+                    }
+
+                    int indice = 0;
+                    for (int i = 0; i < MatrizA.length; i++) {
+                        for (int j = 0; j < MatrizA[i].length; j++) {
+
+                            if (j != tamano) {
+
+                                listaMatrizResultante.get(indice).setText("" + MatrizA[i][j]);
+                                listaMatrizResultante.get(indice).setEditable(false);
+
+                                indice = indice + 1;
+
+                            }
+                        }
+
+                    }
+
+                    for (int x = 0; x < var; x++) {
+                        System.out.println("La variable X" + (x + 1) + " es: " + MatrizA[x][var]);
+                        listavectorResultante.get(x).setText("" + MatrizA[x][var]);
+                        listavectorResultante.get(x).setEditable(false);
+
+                    }
+
+                    pnlSolucion.removeAll();
+                    listasolucion.clear();
+
+                    pnlvaribles.removeAll();
+                    List<JLabel> listavariables = new ArrayList<>();
+                    listavariables.clear();
+
+                    pnlvaribles.setLayout(new java.awt.GridLayout(0, tamano));
+                    pnlSolucion.setLayout(new java.awt.GridLayout(0, tamano));
+
+                    char[] abc = Abecedario();
+
+                    for (int i = 0; i < var; i++) {
+
+                        etiquetassolucion(pnlSolucion, listasolucion);
+                        etiquetas(pnlvaribles, listavariables);
+
+                    }
+
+                    int indice3 = 0;
+
+                    for (int i = 0; i < var; i++) {
+
+                        listasolucion.get(i).setText("" + MatrizA[i][var]);
+                        listavariables.get(i).setText("" + abc[i]);
+
+                        indice3 = indice3 + 1;
+
+                    }
+
                 
-                
 
-            }
-
-            int indice3 = 0;
-            
-            
-
-            for (int i = 0; i < solution.length; i++) {
-                
-                listasolucion.get(i).setText(""+solution[i]);
-                listavariables.get(i).setText(""+abc[i]);
-
-                indice3 = indice3 + 1;
-                
-            }
-             */
         } catch (Exception e) {
 
             System.out.println(e.getMessage());
             JOptionPane.showMessageDialog(null, "Favor De Verificar la informacion en la matriz", "error", JOptionPane.ERROR_MESSAGE);
-            for (int i = 0; i < listamatrizA.size(); i++) {
 
-                listamatrizA.get(i).setText("");
-                listamatrizA.get(i).setEditable(true);
+            pnlMatrizA.removeAll();
+            pnlMatrizA.repaint();
 
-            }
+            pnlB.removeAll();
+            pnlB.repaint();
 
-            for (int i = 0; i < listavectorB.size(); i++) {
+            pnlIgual.removeAll();
+            pnlIgual.repaint();
 
-                listavectorB.get(i).setText("");
+            pnlMatrizResultante.removeAll();
+            pnlMatrizResultante.repaint();
 
-                listavectorB.get(i).setEditable(true);
+            pnlIgualR.removeAll();
+            pnlIgualR.repaint();
 
-            }
+            pnlVectorBResultante.removeAll();
+            pnlVectorBResultante.repaint();
 
-            for (int i = 0; i < listaetiquetas.size(); i++) {
+            pnlSolucion.removeAll();
+            pnlSolucion.repaint();
 
-                listaetiquetas.get(i).setText("");
+            pnlSolucion.removeAll();
+            pnlSolucion.repaint();
 
-            }
+            pnlvaribles.removeAll();
+            pnlvaribles.repaint();
+
+            txtnovariables.setText("");
 
         }
 
@@ -649,8 +638,8 @@ public class FrameGausJordan extends javax.swing.JInternalFrame {
             }
         }
     }
-    
-     static void mostrarMatriz(float matriz[][], int var) {
+
+    static void mostrarMatriz(float matriz[][], int var) {
         for (int i = 0; i < var; i++) {
             for (int j = 0; j < (var + 1); j++) {
                 System.out.print(" " + matriz[i][j] + " | ");
@@ -663,7 +652,7 @@ public class FrameGausJordan extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCrearMatriz;
-    private javax.swing.JButton btnLimpiar;
+    public static javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnSolucion;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
