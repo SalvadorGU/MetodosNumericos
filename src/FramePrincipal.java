@@ -1,7 +1,14 @@
-package metodosnumericoscomputacionales;
+
 
 import java.awt.Dimension;
 import javax.swing.JFrame;
+import mx.itson.vistas.FrameEliminacionGauss;
+import mx.itson.vistas.FrameGausJordan;
+import mx.itson.vistas.FrameMatrizInversa;
+import mx.itson.vistas.FrameMinimos;
+import mx.itson.vistas.FrameMultiplicacion;
+import mx.itson.vistas.FrameSecante;
+import mx.itson.vistas.FrameSeidel;
 
 /**
  *
@@ -41,6 +48,8 @@ public class FramePrincipal extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         mnuinversion = new javax.swing.JMenuItem();
         mnuigaussseidel = new javax.swing.JMenuItem();
+        MinimosCuadrados = new javax.swing.JMenuItem();
+        mnuSecante = new javax.swing.JMenuItem();
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
@@ -121,6 +130,22 @@ public class FramePrincipal extends javax.swing.JFrame {
             }
         });
         mnuGaussJordan.add(mnuigaussseidel);
+
+        MinimosCuadrados.setText("Minimoscuadrados");
+        MinimosCuadrados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MinimosCuadradosActionPerformed(evt);
+            }
+        });
+        mnuGaussJordan.add(MinimosCuadrados);
+
+        mnuSecante.setText("Metodo de la secante");
+        mnuSecante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuSecanteActionPerformed(evt);
+            }
+        });
+        mnuGaussJordan.add(mnuSecante);
 
         jMenuBar1.add(mnuGaussJordan);
 
@@ -222,6 +247,33 @@ public class FramePrincipal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_mnuinversionActionPerformed
 
+    private void MinimosCuadradosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MinimosCuadradosActionPerformed
+       
+        FrameMinimos minimos = new FrameMinimos();
+        DesktopPane.add(minimos);
+        
+        tamanoframe = DesktopPane.getSize();
+        
+        Dimension FrameSize = minimos.getSize();
+        minimos.setLocation((tamanoframe.width - FrameSize.width) / 2, (tamanoframe.height - FrameSize.height) / 2);
+        
+        minimos.setVisible(true);
+        
+        
+    }//GEN-LAST:event_MinimosCuadradosActionPerformed
+
+    private void mnuSecanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuSecanteActionPerformed
+     FrameSecante secante = new FrameSecante();
+     DesktopPane.add(secante);
+     
+     tamanoframe = DesktopPane.getSize();
+        
+        Dimension FrameSize = secante.getSize();
+        secante.setLocation((tamanoframe.width - FrameSize.width) / 2, (tamanoframe.height - FrameSize.height) / 2);
+        
+        secante.setVisible(true);
+    }//GEN-LAST:event_mnuSecanteActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -261,6 +313,7 @@ public class FramePrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JDesktopPane DesktopPane;
+    private javax.swing.JMenuItem MinimosCuadrados;
     private javax.swing.JMenuItem bntSalir;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMenu1;
@@ -269,6 +322,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem mnuEliminacionGauss;
     private javax.swing.JMenu mnuGaussJordan;
     private javax.swing.JMenuItem mnuMultiplicacionMatrices;
+    private javax.swing.JMenuItem mnuSecante;
     private javax.swing.JMenuItem mnuigaussseidel;
     private javax.swing.JMenuItem mnuinversion;
     // End of variables declaration//GEN-END:variables

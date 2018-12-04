@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package metodosnumericoscomputacionales;
+package mx.itson.vistas;
 
 import java.awt.Font;
-import java.awt.HeadlessException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JLabel;
@@ -18,11 +18,13 @@ import javax.swing.JTextField;
  *
  * @author sajos
  */
-public class FrameEliminacionGauss extends javax.swing.JInternalFrame {
+public class FrameMatrizInversa extends javax.swing.JInternalFrame {
 
     List<JTextField> listamatrizA;
     List<JTextField> listavectorB;
     List<JLabel> listaetiquetas;
+    List<JTextField> listA;
+    List<JTextField> listaB;
 
     List<JTextField> listaMatrizResultante;
     List<JTextField> listavectorResultante;
@@ -31,21 +33,23 @@ public class FrameEliminacionGauss extends javax.swing.JInternalFrame {
     List<JLabel> listasolucion;
     int tamano = 0;
 
-    public FrameEliminacionGauss() {
+    public FrameMatrizInversa() {
         initComponents();
 
+        listaB = new ArrayList<>();
+        listA = new ArrayList<>();
         listamatrizA = new ArrayList<>();
         listavectorB = new ArrayList<>();
         listaetiquetas = new ArrayList<>();
 
         listaMatrizResultante = new ArrayList();
         listavectorResultante = new ArrayList();
-        listaigualResultado = new ArrayList();
-
+        //
         listasolucion = new ArrayList<>();
-        ;
-        this.setTitle("Eliminacion de Gauss");
+ 
+        this.setTitle("Matriz Inversa");
 
+        lblX.setVisible(false);
     }
 
     /**
@@ -75,14 +79,13 @@ public class FrameEliminacionGauss extends javax.swing.JInternalFrame {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         pnlMatrizResultante = new javax.swing.JPanel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        pnlIgualR = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         pnlVectorBResultante = new javax.swing.JPanel();
         jScrollPane7 = new javax.swing.JScrollPane();
         pnlSolucion = new javax.swing.JPanel();
         jScrollPane8 = new javax.swing.JScrollPane();
         pnlvaribles = new javax.swing.JPanel();
+        lblX = new javax.swing.JLabel();
 
         setClosable(true);
         setMaximumSize(new java.awt.Dimension(1200, 600));
@@ -103,7 +106,7 @@ public class FrameEliminacionGauss extends javax.swing.JInternalFrame {
 
         lbltitulo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lbltitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbltitulo.setText("Eliminacion de Gauss");
+        lbltitulo.setText("Matriz Inversa");
 
         lblingrese.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblingrese.setText("ingrese numero de variables: ");
@@ -186,7 +189,7 @@ public class FrameEliminacionGauss extends javax.swing.JInternalFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -208,12 +211,6 @@ public class FrameEliminacionGauss extends javax.swing.JInternalFrame {
         pnlMatrizResultante.setLayout(new java.awt.GridLayout(1, 0));
         jScrollPane4.setViewportView(pnlMatrizResultante);
 
-        jScrollPane5.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-
-        pnlIgualR.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        pnlIgualR.setLayout(new java.awt.GridLayout(1, 0));
-        jScrollPane5.setViewportView(pnlIgualR);
-
         pnlVectorBResultante.setLayout(new java.awt.GridLayout(1, 0));
         jScrollPane6.setViewportView(pnlVectorBResultante);
 
@@ -224,8 +221,12 @@ public class FrameEliminacionGauss extends javax.swing.JInternalFrame {
 
         jScrollPane8.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
-        pnlvaribles.setLayout(new java.awt.GridLayout());
+        pnlvaribles.setLayout(new java.awt.GridLayout(1, 0));
         jScrollPane8.setViewportView(pnlvaribles);
+
+        lblX.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        lblX.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblX.setText("X");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -237,9 +238,9 @@ public class FrameEliminacionGauss extends javax.swing.JInternalFrame {
                     .addComponent(jScrollPane8)
                     .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblX, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -249,9 +250,11 @@ public class FrameEliminacionGauss extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE)
-                    .addComponent(jScrollPane6)
-                    .addComponent(jScrollPane4))
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(lblX, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -309,8 +312,7 @@ public class FrameEliminacionGauss extends javax.swing.JInternalFrame {
         pnlMatrizResultante.removeAll();
         pnlMatrizResultante.repaint();
 
-        pnlIgualR.removeAll();
-        pnlIgualR.repaint();
+        
 
         pnlVectorBResultante.removeAll();
         pnlVectorBResultante.repaint();
@@ -337,9 +339,8 @@ public class FrameEliminacionGauss extends javax.swing.JInternalFrame {
                 etiquetas(pnlIgual, listaetiquetas);
 
             }
-            
+
             txtnovariables.setText("");
-            
 
         } catch (Exception e) {
 
@@ -365,33 +366,39 @@ public class FrameEliminacionGauss extends javax.swing.JInternalFrame {
         pnlMatrizResultante.removeAll();
         pnlMatrizResultante.repaint();
 
-        pnlIgualR.removeAll();
-        pnlIgualR.repaint();
+        
 
         pnlVectorBResultante.removeAll();
         pnlVectorBResultante.repaint();
 
         pnlSolucion.removeAll();
         pnlSolucion.repaint();
-        
+
         pnlSolucion.removeAll();
         pnlSolucion.repaint();
-        
+
         pnlvaribles.removeAll();
         pnlvaribles.repaint();
 
         txtnovariables.setText("");
+        lblX.setVisible(false);
 
 
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnSolucionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolucionActionPerformed
+       
+        lblX.setVisible(true);
+        
+        DecimalFormat DC = new DecimalFormat("#.###");
 
         int size = tamano;
-        
+
         try {
+            
+            
             double[][] MatrizA = null;
-            double[] vector = null;
+            double[][] vector = null;
 
             for (int i = 0; i < listamatrizA.size(); i++) {
 
@@ -435,30 +442,30 @@ public class FrameEliminacionGauss extends javax.swing.JInternalFrame {
 
             }
 
-            vector = new double[size];
+            vector = new double[size][1];
 
             int v = 0;
 
             for (int i = 0; i < size; i++) {
 
-                vector[i] = Double.parseDouble(listavectorB.get(v).getText());
+                vector[i][0] = Double.parseDouble(listavectorB.get(v).getText());
                 v = v + 1;
 
             }
 
             pnlMatrizResultante.removeAll();
             pnlVectorBResultante.removeAll();
-            pnlIgualR.removeAll();
+            //pnlIgualR.removeAll();
 
             listaMatrizResultante.clear();
             listavectorResultante.clear();
-            listaigualResultado.clear();
+            //listaigualResultado.clear();
 
             tamano = size;
 
             pnlMatrizResultante.setLayout(new java.awt.GridLayout(tamano, tamano));
             pnlVectorBResultante.setLayout(new java.awt.GridLayout(tamano, 0));
-            pnlIgualR.setLayout(new java.awt.GridLayout(tamano, 0));
+            //pnlIgualR.setLayout(new java.awt.GridLayout(tamano, 0));
 
             int d = listaMatrizResultante.size();
 
@@ -469,18 +476,27 @@ public class FrameEliminacionGauss extends javax.swing.JInternalFrame {
             }
             for (int i = 0; i < tamano; i++) {
                 creaciontextfield(listavectorResultante, pnlVectorBResultante, d);
-                etiquetas(pnlIgualR, listaigualResultado);
+                //etiquetas(pnlIgualR, listaigualResultado);
 
             }
+            double o[][] = invert(MatrizA);
 
-            solucion(MatrizA, vector);
+            double MatrizResultante[][] = new double[size][1];
+            int Columna1 = MatrizA[0].length;
+            for (int x = 0; x < MatrizResultante.length; x++) {
+                for (int y = 0; y < MatrizResultante[x].length; y++) {
+                    for (int z = 0; z < Columna1; z++) {
+                        MatrizResultante[x][y] += o[x][z] * vector[z][y];
+                    }
+                }
+            }
 
             int indice = 0;
 
             for (int i = 0; i < MatrizA.length; i++) {
                 for (int j = 0; j < MatrizA[i].length; j++) {
 
-                    listaMatrizResultante.get(indice).setText("" + MatrizA[i][j]);
+                    listaMatrizResultante.get(indice).setText("" + DC.format(o[i][j]));
                     listaMatrizResultante.get(indice).setEditable(false);
                     indice = indice + 1;
 
@@ -492,84 +508,47 @@ public class FrameEliminacionGauss extends javax.swing.JInternalFrame {
 
             for (int i = 0; i < vector.length; i++) {
 
-                listavectorResultante.get(indice2).setText("" + vector[i]);
+                listavectorResultante.get(indice2).setText("" + vector[i][0]);
                 listavectorResultante.get(indice2).setEditable(false);
                 indice2 = indice2 + 1;
 
             }
 
-            double[] solution = new double[vector.length];
-            for (int i = vector.length - 1; i >= 0; i--) {
-                double sum = 0.0;
-                for (int j = i + 1; j < vector.length; j++) {
-                    sum += MatrizA[i][j] * solution[j];
-                }
-                solution[i] = (vector[i] - sum) / MatrizA[i][i];
-            }
-            
             pnlSolucion.removeAll();
             listasolucion.clear();
-            
+
             pnlvaribles.removeAll();
             List<JLabel> listavariables = new ArrayList<>();
             listavariables.clear();
 
-            pnlvaribles.setLayout(new java.awt.GridLayout(0,vector.length));
+            pnlvaribles.setLayout(new java.awt.GridLayout(0, vector.length));
             pnlSolucion.setLayout(new java.awt.GridLayout(0, vector.length));
 
             char[] abc = Abecedario();
-            
-            for (int i = 0; i < solution.length; i++) {
+
+            for (int i = 0; i < MatrizA.length; i++) {
 
                 etiquetassolucion(pnlSolucion, listasolucion);
-                etiquetas(pnlvaribles,listavariables);
-                
-                
+                etiquetas(pnlvaribles, listavariables);
 
             }
 
             int indice3 = 0;
-            
-            
 
-            for (int i = 0; i < solution.length; i++) {
-                
-                listasolucion.get(i).setText(""+solution[i]);
-                listavariables.get(i).setText(""+abc[i]);
+            for (int i = 0; i < MatrizResultante.length; i++) {
+
+                listasolucion.get(i).setText("" + DC.format(MatrizResultante[i][0]));
+                listavariables.get(i).setText("" + abc[i]);
 
                 indice3 = indice3 + 1;
-                
-            }
-
-        } catch (HeadlessException | NumberFormatException e) {
-
-            JOptionPane.showMessageDialog(null, "Favor De Verificar la informacion en la matriz", "error", JOptionPane.ERROR_MESSAGE);
-            for (int i = 0; i < listamatrizA.size(); i++) {
-
-                listamatrizA.get(i).setText("");
-                listamatrizA.get(i).setEditable(true);
 
             }
 
-            for (int i = 0; i < listavectorB.size(); i++) {
-
-                listavectorB.get(i).setText("");
-
-                listavectorB.get(i).setEditable(true);
-
-            }
-
-            for (int i = 0; i < listaetiquetas.size(); i++) {
-
-                listaetiquetas.get(i).setText("");
-
-            }
-
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
-
     }//GEN-LAST:event_btnSolucionActionPerformed
 
-////////////////////Metodos para poder crear los textFields necesarios segun el usuario los necesite/////////
     public void creaciontextfield(List lista, JPanel panel, int d) {
 
         Font fuente = new Font("Tahoma", 20, 20);
@@ -620,83 +599,6 @@ public class FrameEliminacionGauss extends javax.swing.JInternalFrame {
         lista.add(txt);
 
     }
-//////////////////////////////////////////////////////////////////////////////////////////////////
-//metodos para la llenar la matriz identidad y el vector resultante
-
-    public void CrearMatriz(double[][] matrizA, int tamano, List<JTextField> listA) {
-
-        //matrizA = new double[tamano][tamano];
-        int mA = 0;
-
-        for (int i = 0; i < tamano; i++) {
-            for (int j = 0; j < tamano; j++) {
-
-                matrizA[i][j] = Double.parseDouble(listA.get(mA).getText());
-                mA = mA + 1;
-
-            }
-
-        }
-
-    }
-
-    public void CrearVector(double[] vector, int tamano, List<JTextField> lista) {
-
-        vector = new double[tamano];
-        int v = 0;
-
-        for (int i = 0; i < tamano; i++) {
-
-            vector[i] = Double.parseDouble(lista.get(v).getText());
-            v = v + 1;
-
-        }
-
-    }
-///////////////////////////////////////////////////////////////////////////
-
-    public void solucion(double[][] MatrizA, double[] vector) {
-
-        int N = vector.length;
-        for (int k = 0; k < N; k++) {
-            /**
-             * find pivot row *
-             */
-            int max = k;
-            for (int i = k + 1; i < N; i++) {
-                if (Math.abs(MatrizA[i][k]) > Math.abs(MatrizA[max][k])) {
-                    max = i;
-                }
-            }
-
-            /**
-             * swap row in MatrizA matrix *
-             */
-            double[] temp = MatrizA[k];
-            MatrizA[k] = MatrizA[max];
-            MatrizA[max] = temp;
-
-            /**
-             * swap corresponding values in constants matrix *
-             */
-            double t = vector[k];
-            vector[k] = vector[max];
-            vector[max] = t;
-
-            /**
-             * pivot within MatrizA and vector *
-             */
-            for (int i = k + 1; i < N; i++) {
-                double factor = MatrizA[i][k] / MatrizA[k][k];
-                vector[i] -= factor * vector[k];
-                for (int j = k; j < N; j++) {
-                    MatrizA[i][j] -= factor * MatrizA[k][j];
-                }
-            }
-
-        }
-
-    }
 
     public char[] Abecedario() {
         char[] s;
@@ -706,6 +608,99 @@ public class FrameEliminacionGauss extends javax.swing.JInternalFrame {
         }
         return s;
     }
+
+    public static double[][] invert(double a[][]) {
+
+        int n = a.length;
+        double x[][] = new double[n][n];
+        double b[][] = new double[n][n];
+        int index[] = new int[n];
+        for (int i = 0; i < n; ++i) {
+            b[i][i] = 1;
+        }
+
+        // Transform the matrix into an upper triangle
+        gaussian(a, index);
+
+        // Update the matrix b[i][j] with the ratios stored
+        for (int i = 0; i < n - 1; ++i) {
+            for (int j = i + 1; j < n; ++j) {
+                for (int k = 0; k < n; ++k) {
+                    b[index[j]][k]
+                            -= a[index[j]][i] * b[index[i]][k];
+                }
+            }
+        }
+
+        // Perform backward substitutions
+        for (int i = 0; i < n; ++i) {
+            x[n - 1][i] = b[index[n - 1]][i] / a[index[n - 1]][n - 1];
+            for (int j = n - 2; j >= 0; --j) {
+                x[j][i] = b[index[j]][i];
+                for (int k = j + 1; k < n; ++k) {
+                    x[j][i] -= a[index[j]][k] * x[k][i];
+                }
+
+                x[j][i] /= a[index[j]][j];
+            }
+        }
+        return x;
+    }
+
+    public static void gaussian(double a[][], int index[]) {
+
+        int n = index.length;
+        double c[] = new double[n];
+
+        // Initialize the index
+        for (int i = 0; i < n; ++i) {
+            index[i] = i;
+        }
+
+        // Find the rescaling factors, one from each row
+        for (int i = 0; i < n; ++i) {
+            double c1 = 0;
+            for (int j = 0; j < n; ++j) {
+                double c0 = Math.abs(a[i][j]);
+                if (c0 > c1) {
+                    c1 = c0;
+                }
+            }
+            c[i] = c1;
+        }
+
+        // Search the pivoting element from each column
+        int k = 0;
+        for (int j = 0; j < n - 1; ++j) {
+            double pi1 = 0;
+            for (int i = j; i < n; ++i) {
+
+                double pi0 = Math.abs(a[index[i]][j]);
+                pi0 /= c[index[i]];
+                if (pi0 > pi1) {
+                    pi1 = pi0;
+                    k = i;
+                }
+            }
+
+            // Interchange rows according to the pivoting order
+            int itmp = index[j];
+            index[j] = index[k];
+            index[k] = itmp;
+            for (int i = j + 1; i < n; ++i) {
+                double pj = a[index[i]][j] / a[index[j]][j];
+
+                // Record pivoting ratios below the diagonal
+                a[index[i]][j] = pj;
+
+                // Modify other elements accordingly
+                for (int l = j + 1; l < n; ++l) {
+                    a[index[i]][l] -= pj * a[index[j]][l];
+                }
+            }
+        }
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCrearMatriz;
@@ -718,15 +713,14 @@ public class FrameEliminacionGauss extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JLabel lblX;
     private javax.swing.JLabel lblingrese;
     private javax.swing.JLabel lbltitulo;
     private javax.swing.JPanel pnlB;
     private javax.swing.JPanel pnlIgual;
-    private javax.swing.JPanel pnlIgualR;
     private javax.swing.JPanel pnlInfo;
     private javax.swing.JPanel pnlMatrizA;
     private javax.swing.JPanel pnlMatrizResultante;

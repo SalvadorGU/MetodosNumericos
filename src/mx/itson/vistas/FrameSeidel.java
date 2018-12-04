@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package metodosnumericoscomputacionales;
+package mx.itson.vistas;
 
 import java.awt.Font;
 import java.text.DecimalFormat;
@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import mx.itson.metodos.GaussSeidel;
 
 /**
  *

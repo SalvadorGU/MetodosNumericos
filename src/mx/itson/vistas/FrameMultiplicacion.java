@@ -1,4 +1,4 @@
-package metodosnumericoscomputacionales;
+package mx.itson.vistas;
 
 import java.awt.Dimension;
 import java.awt.Font;
